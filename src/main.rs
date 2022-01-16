@@ -38,17 +38,23 @@ pub extern "C" fn _start() -> ! {
     //     *(0xdeadbeef as *mut u64) = 42;
     // }
     
-    fn stack_overflow() {
-        stack_overflow();
-    }
-    
-    stack_overflow();
+    // fn stack_overflow() {
+    //     stack_overflow();
+    // }
+    //
+    // stack_overflow();
     
     #[cfg(test)]
     test_main();
 
     println!("It did not crash!");
-    loop {}
+    // loop {}
+    // loop {
+    //     // use blog_os::print;
+    //     // for _i in 0..10000 {}
+    //     // print!("-");
+    // }
+    blog_os::hlt_loop();
 }
 
 // This function is called on panic.
@@ -56,7 +62,7 @@ pub extern "C" fn _start() -> ! {
 #[panic_handler]
 fn panic(info: &PanicInfo) -> ! {
     println!("{}", info);
-    loop {}
+    blog_os::hlt_loop();
 }
 
 // our panic handler in test mode

@@ -47,6 +47,7 @@ pub extern "C" fn _start() -> ! {
 #[allow(unconditional_recursion)]
 fn stack_overflow() {
 	stack_overflow();
+	volatile::Volatile::new(0).read();
 }
 
 #[panic_handler]
