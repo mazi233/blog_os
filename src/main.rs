@@ -31,6 +31,20 @@ pub extern "C" fn _start() -> ! {
     // panic!("Some panic message");
     
     blog_os::init();
+
+    // let ptr = 0xdeadbeaf as *mut u32;
+    // unsafe { *ptr = 42; }
+    
+    // let ptr = 0x2053e3 as *mut u32;
+    // unsafe { let _x = *ptr; }
+    // println!("read worked");
+    
+    // unsafe { *ptr = 42; }
+    // println!("write worked");
+
+    use x86_64::registers::control::Cr3;
+    let (level_4_page_table, _) = Cr3::read();
+    println!("Level 4 page table at: {:?}", level_4_page_table.start_address());
     
     // x86_64::instructions::interrupts::int3();
 
